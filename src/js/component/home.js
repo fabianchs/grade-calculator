@@ -60,10 +60,20 @@ export function Home() {
 
 	function createGrades() {
 		const final_grades = grades.map((element, index) => {
-			element * credits[index];
+			return element * credits[index];
 		});
 
-		console.log(final_grades);
+		let counter = 0;
+		let counter_credits = 0;
+		let final = 0;
+		for (let i = 0; i < final_grades.length; i++) {
+			counter = counter + final_grades[i];
+			counter_credits = counter_credits + credits[i];
+		}
+
+		final = counter / counter_credits;
+
+		console.log(final_grades, final);
 	}
 
 	function createInputs() {
