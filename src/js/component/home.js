@@ -7,7 +7,7 @@ import rigoImage from "../../img/rigo-baby.jpg";
 export function Home() {
 	return (
 		<div className="text-center text-light mt-5">
-			<h1>Hello! Here is a simple way to calculate the semester grade</h1>
+			<h1>Hello! Here is a simple way t o calculate the semester grade</h1>
 			<p>
 				<img src={rigoImage} />
 			</p>
