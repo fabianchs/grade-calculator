@@ -16,6 +16,8 @@ export function Home() {
 		aux_grades[index] = e.target.value;
 
 		setGrades(aux_grades);
+
+		createInputs();
 	}
 
 	function editCredit(e, index) {
@@ -24,6 +26,8 @@ export function Home() {
 		aux_credits[index] = e.target.value;
 
 		setGrades(aux_credits);
+
+		createInputs();
 	}
 
 	function addToArrays() {
@@ -52,6 +56,14 @@ export function Home() {
 		setGrades(aux_grades);
 
 		createInputs();
+	}
+
+	function createGrades() {
+		const final_grades = grades.map((element, index) => {
+			element * credits[index];
+		});
+
+		console.log(final_grades);
 	}
 
 	function createInputs() {
@@ -95,7 +107,12 @@ export function Home() {
 
 	return (
 		<div className="text-center text-light mt-5">
-			<h1>Hello! Here is a simple way to calculate the semester grade</h1>
+			<h1>
+				Hello! Here is a simple way to calculate the semester grade{" "}
+				<img
+					src="https://64.media.tumblr.com/tumblr_mcm1ec68fN1qfqgb9o1_1280.gif"
+					style={{ height: "54.5px" }}></img>
+			</h1>
 			<div className="row d-flex justify-content-center">
 				<div className="col-xl-3 col-lg-3 col-md-9 col-sm-12 ">
 					<div className="d-flex justify-content-center">
@@ -124,9 +141,11 @@ export function Home() {
 				</div>
 			</div>
 
-			<a href="#" className="btn btn-info m-2">
+			<button
+				className="btn btn-info m-2"
+				onClick={() => [createGrades()]}>
 				Calculate
-			</a>
+			</button>
 		</div>
 	);
 }
