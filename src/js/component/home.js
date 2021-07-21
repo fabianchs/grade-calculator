@@ -16,8 +16,6 @@ export function Home() {
 		aux_grades[index] = e.target.value;
 
 		setGrades(aux_grades);
-
-		createInputs();
 	}
 
 	function editCredit(e, index) {
@@ -26,8 +24,6 @@ export function Home() {
 		aux_credits[index] = e.target.value;
 
 		setGrades(aux_credits);
-
-		createInputs();
 	}
 
 	function addToArrays() {
@@ -59,13 +55,26 @@ export function Home() {
 	}
 
 	function createGrades() {
-		const final_grades = grades.map((element, index) => {
-			return element * credits[index];
+		let new_credits = [];
+		let new_grades = [];
+
+		for (let i = 0; i < credits.length; i++) {
+			if (credits[i] > 0) {
+				new_credits.push(credits[i]);
+				new_grades.push(grades[i]);
+			}
+		}
+
+		const final_grades = new_grades.map((element, index) => {
+			return element * new_credits[index];
 		});
 
 		let counter = 0;
 		let counter_credits = 0;
 		let final = 0;
+
+		console.log(final_grades);
+
 		for (let i = 0; i < final_grades.length; i++) {
 			counter = counter + final_grades[i];
 			counter_credits = counter_credits + credits[i];
@@ -73,7 +82,7 @@ export function Home() {
 
 		final = counter / counter_credits;
 
-		console.log(final_grades, final);
+		console.log(final);
 	}
 
 	function createInputs() {
@@ -87,8 +96,11 @@ export function Home() {
 						defaultValue={element}
 						placeholder="Credits"
 						className="m-1 border-dark"
-						onBlur={() => {
+						onChange={() => {
 							editCredit(event, index);
+						}}
+						onBlur={() => {
+							createInputs();
 						}}
 					/>
 				</div>
@@ -100,8 +112,11 @@ export function Home() {
 						placeholder="Grade"
 						className="m-1 border-dark"
 						defaultValue={grades[index]}
-						onBlur={() => {
+						onChange={() => {
 							editGrade(event, index);
+						}}
+						onBlur={() => {
+							createInputs();
 						}}
 					/>
 				</div>
