@@ -9,6 +9,9 @@ export function Home() {
 	const [credits, setCredits] = useState([""]);
 	const [grades, setGrades] = useState([""]);
 	const [renderedEditor, setRenderedEditor] = useState([""]);
+	const [finalRenderedResult, setFinalRenderedResult] = useState(
+		<h1>Here is going to appear your average!</h1>
+	);
 
 	function editGrade(e, index) {
 		let aux_grades = grades;
@@ -83,6 +86,15 @@ export function Home() {
 		final = counter / counter_credits;
 
 		console.log(final);
+
+		setFinalRenderedResult(
+			<h1>
+				Your average is <span className="text-success">{final}</span>{" "}
+				<img
+					src="https://i.pinimg.com/originals/e5/93/ab/e593ab0589d5f1b389e4dfbcce2bce20.gif"
+					style={{ height: "100px" }}></img>
+			</h1>
+		);
 	}
 
 	function createInputs() {
@@ -123,14 +135,18 @@ export function Home() {
 	}, []);
 
 	return (
-		<div className="text-center text-light mt-5">
-			<h1>
-				Hello! Here is a simple way to calculate the semester grade{" "}
-				<img
-					src="https://64.media.tumblr.com/tumblr_mcm1ec68fN1qfqgb9o1_1280.gif"
-					style={{ height: "54.5px" }}></img>
-			</h1>
-			<div className="row d-flex justify-content-center">
+		<div className="text-center text-light mt-5 m-2">
+			<div className="row d-flex justify-content-center container-fluid">
+				<div className="col-12">
+					{" "}
+					<h1>
+						Hello! Here is a simple way to calculate the semester
+						grade{" "}
+						<img
+							src="https://64.media.tumblr.com/tumblr_mcm1ec68fN1qfqgb9o1_1280.gif"
+							style={{ height: "54.5px" }}></img>
+					</h1>
+				</div>
 				<div className="col-xl-3 col-lg-3 col-md-9 col-sm-12 ">
 					<div className="d-flex justify-content-center">
 						<button
@@ -157,14 +173,16 @@ export function Home() {
 					<div key={credits.length + grades.length}>
 						{renderedEditor}
 					</div>
+					<button
+						className="btn btn-info m-2 row"
+						onClick={() => [createGrades()]}>
+						Calculate
+					</button>
+					<div className="row border border-light mt-1">
+						<div className="col-12">{finalRenderedResult}</div>
+					</div>
 				</div>
 			</div>
-
-			<button
-				className="btn btn-info m-2"
-				onClick={() => [createGrades()]}>
-				Calculate
-			</button>
 		</div>
 	);
 }
