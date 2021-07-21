@@ -135,7 +135,7 @@ export function Home() {
 	}, []);
 
 	return (
-		<div className="text-center text-light mt-5 m-2">
+		<div className="text-center text-light mt-5 m-2 d-flex justify-content-center">
 			<div className="row d-flex justify-content-center container-fluid">
 				<div className="col-12">
 					{" "}
