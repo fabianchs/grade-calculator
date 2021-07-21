@@ -83,18 +83,32 @@ export function Home() {
 			counter_credits = counter_credits + parseInt(credits[i]);
 		}
 
-		final = counter / counter_credits;
+		final = parseFloat(counter) / parseFloat(counter_credits);
 
 		console.log(final);
 
-		setFinalRenderedResult(
-			<h1>
-				Your average is <span className="text-success">{final}</span>{" "}
-				<img
-					src="https://i.pinimg.com/originals/e5/93/ab/e593ab0589d5f1b389e4dfbcce2bce20.gif"
-					style={{ height: "100px" }}></img>
-			</h1>
-		);
+		if (isNaN(final)) {
+			setFinalRenderedResult(
+				<h3>
+					Hmm!! It seems that there{"'"}s an{" "}
+					<span className="text-danger">error</span>, try to not use
+					letters, or have only one course with zero credits.
+					<img
+						src="https://images.squarespace-cdn.com/content/v1/5c7ffc8eb7c92c138fa17e96/1552067127342-B6HNFUC7X5WNOOTRS71W/Cat.gif"
+						style={{ height: "130px" }}></img>
+				</h3>
+			);
+		} else {
+			setFinalRenderedResult(
+				<h1>
+					Your average is{" "}
+					<span className="text-success">{final}</span>{" "}
+					<img
+						src="https://i.pinimg.com/originals/e5/93/ab/e593ab0589d5f1b389e4dfbcce2bce20.gif"
+						style={{ height: "100px" }}></img>
+				</h1>
+			);
+		}
 	}
 
 	function createInputs() {
