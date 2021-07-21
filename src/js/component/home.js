@@ -76,8 +76,8 @@ export function Home() {
 		console.log(final_grades);
 
 		for (let i = 0; i < final_grades.length; i++) {
-			counter = counter + final_grades[i];
-			counter_credits = counter_credits + credits[i];
+			counter = counter + parseInt(final_grades[i]);
+			counter_credits = counter_credits + parseInt(credits[i]);
 		}
 
 		final = counter / counter_credits;
@@ -89,7 +89,6 @@ export function Home() {
 		const list_inputs = credits.map((element, index) => (
 			<div className="row" key={index}>
 				<div className="col-6" key={index.toString + "credits"}>
-					{" "}
 					<Input
 						type="text"
 						name="text"
@@ -99,13 +98,9 @@ export function Home() {
 						onChange={() => {
 							editCredit(event, index);
 						}}
-						onBlur={() => {
-							createInputs();
-						}}
 					/>
 				</div>
 				<div className="col-6" key={index.toString + "grades"}>
-					{" "}
 					<Input
 						type="text"
 						name="text"
@@ -114,9 +109,6 @@ export function Home() {
 						defaultValue={grades[index]}
 						onChange={() => {
 							editGrade(event, index);
-						}}
-						onBlur={() => {
-							createInputs();
 						}}
 					/>
 				</div>
@@ -162,7 +154,9 @@ export function Home() {
 						<div className="col-6">Credits</div>
 						<div className="col-6">Grade</div>
 					</div>
-					<div key={[grades, credits]}>{renderedEditor}</div>
+					<div key={credits.length + grades.length}>
+						{renderedEditor}
+					</div>
 				</div>
 			</div>
 
