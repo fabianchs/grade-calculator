@@ -1,8 +1,6 @@
-import { func } from "prop-types";
 import React, { useState, useEffect } from "react";
 import { Input } from "reactstrap";
 //include images into your bundle
-import rigoImage from "../../img/rigo-baby.jpg";
 
 //create your first component
 export function Home() {
@@ -26,7 +24,7 @@ export function Home() {
 
 		aux_credits[index] = e.target.value;
 
-		setGrades(aux_credits);
+		setCredits(aux_credits);
 	}
 
 	function addToArrays() {
@@ -62,30 +60,26 @@ export function Home() {
 		let new_grades = [];
 
 		for (let i = 0; i < credits.length; i++) {
-			if (credits[i] > 0) {
-				new_credits.push(credits[i]);
-				new_grades.push(grades[i]);
+			if (parseInt(credits[i]) > 0) {
+				new_credits.push(parseInt(credits[i]));
+				new_grades.push(parseFloat(grades[i]));
 			}
 		}
 
 		const final_grades = new_grades.map((element, index) => {
-			return element * new_credits[index];
+			return parseFloat(element) * parseFloat(new_credits[index]);
 		});
 
 		let counter = 0;
 		let counter_credits = 0;
 		let final = 0;
 
-		console.log(final_grades);
-
 		for (let i = 0; i < final_grades.length; i++) {
 			counter = counter + parseInt(final_grades[i]);
-			counter_credits = counter_credits + parseInt(credits[i]);
+			counter_credits = counter_credits + parseInt(new_credits[i]);
 		}
 
-		final = parseFloat(counter) / parseFloat(counter_credits);
-
-		console.log(final);
+		final = (parseFloat(counter) / parseFloat(counter_credits)).toFixed(2);
 
 		if (isNaN(final)) {
 			setFinalRenderedResult(
@@ -109,6 +103,7 @@ export function Home() {
 				</h1>
 			);
 		}
+		createInputs();
 	}
 
 	function createInputs() {
@@ -193,7 +188,9 @@ export function Home() {
 						Calculate
 					</button>
 					<div className="row border border-light mt-1">
-						<div className="col-12">{finalRenderedResult}</div>
+						<div className="col-12" key={(grades, credits)}>
+							{finalRenderedResult}
+						</div>
 					</div>
 				</div>
 			</div>
