@@ -69,31 +69,20 @@ export function Home() {
 		}
 
 		const final_grades = new_grades.map((element, index) => {
-			return element * new_credits[index];
+			return parseFloat(element) * parseFloat(new_credits[index]);
 		});
 
 		let counter = 0;
 		let counter_credits = 0;
 		let final = 0;
 
-		console.log(final_grades);
-
-		let limit = 0;
-
-		if (final_grades.length > 1) {
-			limit = grades.length;
-		} else {
-			limit = 60;
-		}
-
 		for (let i = 0; i < final_grades.length; i++) {
 			counter = counter + parseInt(final_grades[i]);
 			counter_credits = counter_credits + parseInt(new_credits[i]);
 		}
+		console.log("grades", final_grades, "credits", new_credits);
 
 		final = (parseFloat(counter) / parseFloat(counter_credits)).toFixed(2);
-
-		console.log(final);
 
 		if (isNaN(final)) {
 			setFinalRenderedResult(
@@ -202,7 +191,9 @@ export function Home() {
 						Calculate
 					</button>
 					<div className="row border border-light mt-1">
-						<div className="col-12">{finalRenderedResult}</div>
+						<div className="col-12" key={(grades, credits)}>
+							{finalRenderedResult}
+						</div>
 					</div>
 				</div>
 			</div>
