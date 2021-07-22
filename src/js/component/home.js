@@ -63,7 +63,7 @@ export function Home() {
 
 		for (let i = 0; i < credits.length; i++) {
 			if (credits[i] > 0) {
-				new_credits.push(credits[i]);
+				new_credits.push(parseInt(credits[i]));
 				new_grades.push(grades[i]);
 			}
 		}
@@ -78,12 +78,20 @@ export function Home() {
 
 		console.log(final_grades);
 
-		for (let i = 0; i < final_grades.length; i++) {
-			counter = counter + parseInt(final_grades[i]);
-			counter_credits = counter_credits + parseInt(credits[i]);
+		let limit = 0;
+
+		if (final_grades.length > 1) {
+			limit = grades.length;
+		} else {
+			limit = 60;
 		}
 
-		final = parseFloat(counter) / parseFloat(counter_credits);
+		for (let i = 0; i < final_grades.length; i++) {
+			counter = counter + parseInt(final_grades[i]);
+			counter_credits = counter_credits + parseInt(new_credits[i]);
+		}
+
+		final = (parseFloat(counter) / parseFloat(counter_credits)).toFixed(2);
 
 		console.log(final);
 
@@ -109,6 +117,7 @@ export function Home() {
 				</h1>
 			);
 		}
+		createInputs();
 	}
 
 	function createInputs() {
