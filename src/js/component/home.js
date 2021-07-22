@@ -1,8 +1,6 @@
-import { func } from "prop-types";
 import React, { useState, useEffect } from "react";
 import { Input } from "reactstrap";
 //include images into your bundle
-import rigoImage from "../../img/rigo-baby.jpg";
 
 //create your first component
 export function Home() {
@@ -26,7 +24,7 @@ export function Home() {
 
 		aux_credits[index] = e.target.value;
 
-		setGrades(aux_credits);
+		setCredits(aux_credits);
 	}
 
 	function addToArrays() {
@@ -62,9 +60,9 @@ export function Home() {
 		let new_grades = [];
 
 		for (let i = 0; i < credits.length; i++) {
-			if (credits[i] > 0) {
+			if (parseInt(credits[i]) > 0) {
 				new_credits.push(parseInt(credits[i]));
-				new_grades.push(grades[i]);
+				new_grades.push(parseFloat(grades[i]));
 			}
 		}
 
@@ -80,7 +78,6 @@ export function Home() {
 			counter = counter + parseInt(final_grades[i]);
 			counter_credits = counter_credits + parseInt(new_credits[i]);
 		}
-		console.log("grades", final_grades, "credits", new_credits);
 
 		final = (parseFloat(counter) / parseFloat(counter_credits)).toFixed(2);
 
