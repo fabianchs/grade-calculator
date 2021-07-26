@@ -84,9 +84,9 @@ export function Home() {
 		if (isNaN(final)) {
 			setFinalRenderedResult(
 				<h3>
-					Hmm!! It seems that there{"'"}s an{" "}
+					Hmm!! It seems to be an{" "}
 					<span className="text-danger">error</span>, try to not use
-					letters, or have only one course with zero credits.
+					letters, or have only courses with zero credits.
 					<img
 						src="https://images.squarespace-cdn.com/content/v1/5c7ffc8eb7c92c138fa17e96/1552067127342-B6HNFUC7X5WNOOTRS71W/Cat.gif"
 						style={{ height: "130px" }}></img>
