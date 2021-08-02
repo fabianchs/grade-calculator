@@ -155,6 +155,10 @@ export function Home() {
 							src="https://64.media.tumblr.com/tumblr_mcm1ec68fN1qfqgb9o1_1280.gif"
 							style={{ height: "54.5px" }}></img>
 					</h1>
+					<small>
+						Made by: Ashly Cerdas, Fabián Chacón and Fiorella
+						Madrigal
+					</small>
 				</div>
 				<div className="col-xl-3 col-lg-3 col-md-9 col-sm-12 ">
 					<div className="d-flex justify-content-center">
